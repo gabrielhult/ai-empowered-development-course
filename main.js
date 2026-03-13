@@ -28,6 +28,21 @@ function init() {
         btn.addEventListener('click', () => setFilter(btn.dataset.filter));
     });
 
+    // Wire up bulk actions
+    document.getElementById('selectAllBtn').addEventListener('click', () => {
+        const anyIncomplete = todos.some(t => !t.completed);
+        todos.forEach(t => { t.completed = anyIncomplete; });
+        renderTodos();
+    });
+    document.getElementById('markAllCompleteBtn').addEventListener('click', () => {
+        todos.forEach(t => { t.completed = true; });
+        renderTodos();
+    });
+    document.getElementById('deleteCompletedBtn').addEventListener('click', () => {
+        todos = todos.filter(t => !t.completed);
+        renderTodos();
+    });
+
     renderTodos();
 }
 
