@@ -60,8 +60,8 @@ SafetyNet understands what the command *does*—it's doing a hard reset, so bloc
 /plugin marketplace add kenryu42/cc-marketplace # First add the Marketplace
 /plugin install safety-net@cc-marketplace # Then install safety net
 ```
-- When prompted to choose a scope during plug-in installation or when configuring custom rules, select **user scope**.  
-- Then restart Claude Code.  
+
+Then restart Claude Code.
 
 ### Verify Installation
 
@@ -138,11 +138,9 @@ Use `/set-custom-rules` to configure these rules interactively:
 | **Goal** | See SafetyNet in action and understand why semantic safety matters |
 | **Concepts** | Autonomous agent safety, semantic analysis vs pattern matching, custom rules |
 
-When running autonomously, Claude can execute commands with the same access you have to your files, repository, and system, and prompts like “yes, and don’t ask again” grant ongoing permission. Without guardrails, a single mistake or misunderstanding can permanently delete data or rewrite history before you notice.  
-
 ### Steps
 
-1. Install SafetyNet: Run the following commands in Claude code
+1. Install SafetyNet:
    ```bash
    /plugin marketplace add kenryu42/cc-marketplace
    /plugin install safety-net@cc-marketplace
