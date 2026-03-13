@@ -85,6 +85,25 @@ footer {
     background-color: #1d4ed8;
 }
 
+/* Search section */
+.search-section {
+    margin-bottom: 1rem;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.search-section input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 /* Filter buttons (Feature 2) */
 .filters {
     display: flex;
