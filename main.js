@@ -28,7 +28,27 @@ function init() {
         btn.addEventListener('click', () => setFilter(btn.dataset.filter));
     });
 
+    // Wire up dark mode toggle
+    document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('darkModeToggle').textContent = 'Light mode';
+    }
+
     renderTodos();
+}
+
+function toggleDarkMode() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('darkModeToggle').textContent = 'Dark mode';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('darkModeToggle').textContent = 'Light mode';
+    }
 }
 
 function initVibeKanban() {
