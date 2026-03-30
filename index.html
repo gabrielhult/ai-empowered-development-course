@@ -9,6 +9,7 @@
 <body>
     <header>
         <h1>My App</h1>
+        <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
     </header>
 
     <main>
@@ -16,6 +17,11 @@
             <h1>My Todos</h1>
             <div class="input-section">
                 <input type="text" id="todoInput" placeholder="Add a new todo...">
+                <select id="prioritySelect" aria-label="Priority">
+                    <option value="high">High</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="low">Low</option>
+                </select>
                 <button id="addBtn">Add</button>
             </div>
 
@@ -23,6 +29,13 @@
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="active">Active</button>
                 <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" id="sortByPriorityBtn" data-sort="priority">Sort by Priority</button>
+            </div>
+
+            <div class="bulk-actions" id="bulkActions">
+                <button id="selectAllBtn">Select All</button>
+                <button id="markCompletedBtn">Mark as Completed</button>
+                <button id="deleteCompletedBtn">Delete Completed</button>
             </div>
 
             <ul class="todoList" id="todoList"></ul>
