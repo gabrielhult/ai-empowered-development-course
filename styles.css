@@ -333,13 +333,22 @@ body.dark-mode .input-section input {
     color: #f59e0b;
 }
 
+.todo-favorite.todo-favorite-active:hover {
+    color: #b45309;
+    transform: scale(1.2);
+}
+
 body.dark-mode .todo-favorite {
     color: #4b5563;
 }
 
 body.dark-mode .todo-favorite:hover,
-body.dark-mode .todo-favorite-active {
+body.dark-mode .todo-favorite.todo-favorite-active {
     color: #fbbf24;
+}
+
+body.dark-mode .todo-favorite.todo-favorite-active:hover {
+    color: #d97706;
 }
 
 /* Feature 3: Priority indicators */
