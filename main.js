@@ -24,7 +24,8 @@ function loadTodos() {
         if (!Array.isArray(stored)) return [];
         return stored.map(t => ({
             ...t,
-            priority: ['high', 'medium', 'low'].includes(t.priority) ? t.priority : 'medium'
+            priority: ['high', 'medium', 'low'].includes(t.priority) ? t.priority : 'medium',
+            favorited: Boolean(t.favorited)
         }));
     } catch {
         return [];
@@ -122,6 +123,7 @@ function addTodo() {
         id: nextId++,
         text: text,
         completed: false,
+        favorited: false,
         priority: prioritySelect.value || 'medium'
     });
 
@@ -144,6 +146,16 @@ function deleteTodo(id) {
     todos = todos.filter(t => t.id !== id);
     saveTodos();
     renderTodos();
+}
+
+// Feature 4: Favorite toggle
+function toggleFavorite(id) {
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+        todo.favorited = !todo.favorited;
+        saveTodos();
+        renderTodos();
+    }
 }
 
 function reorderTodos(srcId, targetId) {
@@ -171,6 +183,7 @@ function renderTodos() {
         li.dataset.id = todo.id;
 
         const p = todo.priority || 'medium';
+        const isFav = Boolean(todo.favorited);
         li.innerHTML = `
             <span class="drag-handle">⠿</span>
             <input type="checkbox" class="todo-select" ${selectedIds.has(todo.id) ? 'checked' : ''}>
@@ -181,6 +194,7 @@ function renderTodos() {
                 <option value="medium" ${p === 'medium' ? 'selected' : ''}>${PRIORITY_LABELS.medium.symbol} ${PRIORITY_LABELS.medium.label}</option>
                 <option value="low" ${p === 'low' ? 'selected' : ''}>${PRIORITY_LABELS.low.symbol} ${PRIORITY_LABELS.low.label}</option>
             </select>
+            <button class="todo-favorite ${isFav ? 'todo-favorite-active' : ''}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}">${isFav ? '★' : '☆'}</button>
             <button class="todo-delete">Delete</button>
         `;
 
@@ -201,6 +215,7 @@ function renderTodos() {
                 renderTodos();
             }
         });
+        li.querySelector('.todo-favorite').addEventListener('click', () => toggleFavorite(todo.id));
         li.querySelector('.todo-delete').addEventListener('click', () => deleteTodo(todo.id));
 
         li.addEventListener('dragstart', () => {
